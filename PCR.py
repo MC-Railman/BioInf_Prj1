@@ -3,6 +3,7 @@
 
 import random
 import string
+import re
 
 bPairs = "actg"
 gene = ""
@@ -10,3 +11,9 @@ for i in range(2000):
     gene +=random.choice(bPairs)
 
 print(gene)
+regEx = "atg.{197}"
+m = re.search(regEx, gene)
+amplify = m.group(0)
+print len(amplify)
+print amplify
+
