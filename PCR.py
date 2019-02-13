@@ -14,6 +14,6 @@ print(gene)
 regEx = "atg.{197}"
 m = re.search(regEx, gene)
 amplify = m.group(0)
-print len(amplify)
-print amplify
+print (len(amplify))
+print (amplify)
 
