@@ -30,25 +30,24 @@ reverseGene = "".join(reversed(geneHalf2))
 # loop to get good primers
 badPrimers = True
 while badPrimers:
-# TODO: randomly pick 200 to be copied
+    # randomly pick 200 to be copied
     start = random.randint(1, 1701)
     end = start + 200
 
-# TODO: check the first 20 over all 2000 for unique ON BOTH STRANDS
+    # check the first 20 over all 2000 for unique primers ON BOTH STRANDS
     primer1 = ""
     primer2 = ""
     for i in range(20):
         primer1 += geneHalf1[i+start]
-     primer2 += reverseGene[i+start]
+        primer2 += reverseGene[i+start]
 
 
     if geneHalf1.count(primer1) == 1 and reverseGene.count(primer2) == 1:
         badPrimers = False
 
 
-
-
 # TODO: Randomly pick size 150 - 250 to copy of strand and copy
+e = random.randint(150, 251)
 
 # TODO: use copied strands to make more copies IF they are at least length 200
 
