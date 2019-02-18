@@ -26,24 +26,30 @@ for letter in geneHalf1:
 
 # Reverse second half so it reads from 3' to 5'
 reverseGene = "".join(reversed(geneHalf2))
-print (geneHalf1)
-print (geneHalf2)
 
+# loop to get good primers
+badPrimers = True
+while badPrimers:
 # TODO: randomly pick 200 to be copied
+    start = random.randint(1, 1701)
+    end = start + 200
 
 # TODO: check the first 20 over all 2000 for unique ON BOTH STRANDS
+    primer1 = ""
+    primer2 = ""
+    for i in range(20):
+        primer1 += geneHalf1[i+start]
+     primer2 += reverseGene[i+start]
+
+
+    if geneHalf1.count(primer1) == 1 and reverseGene.count(primer2) == 1:
+        badPrimers = False
+
+
+
 
 # TODO: Randomly pick size 150 - 250 to copy of strand and copy
 
 # TODO: use copied strands to make more copies IF they are at least length 200
 
 # TODO: After 30 iterations use pandas to create graph
-
-
-# print(gene)
-# regEx = "atg.{197}"
-# m = re.search(regEx, gene)
-# amplify = m.group(0)
-# print (len(amplify))
-# print (amplify)
-
