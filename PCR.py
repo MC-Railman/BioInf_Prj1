@@ -29,6 +29,17 @@ reverseGene = "".join(reversed(geneHalf2))
 print (geneHalf1)
 print (geneHalf2)
 
+# TODO: randomly pick 200 to be copied
+
+# TODO: check the first 20 over all 2000 for unique ON BOTH STRANDS
+
+# TODO: Randomly pick size 150 - 250 to copy of strand and copy
+
+# TODO: use copied strands to make more copies IF they are at least length 200
+
+# TODO: After 30 iterations use pandas to create graph
+
+
 # print(gene)
 # regEx = "atg.{197}"
 # m = re.search(regEx, gene)
