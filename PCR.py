@@ -2,6 +2,9 @@
 # Written by Cameron Reilly and Tristan Hess, copyright 2019
 
 import random
+import numpy as np
+import matplotlib.pyplot as plt; plt.rcdefaults()
+import matplotlib.pyplot as plt
 
 bPairs = "actg"
 geneHalf1 = ""
@@ -43,8 +46,8 @@ while badPrimers:
 
     if geneHalf1.count(primer1) == 1 and reverseGene.count(primer2) == 1:
         badPrimers = False
-        geneSlice1 = geneHalf1[start:start+250]         # segment we will copy from 5' to 3'
-        geneSlice2 = geneHalf2[start:start+250]         # segment we will copy from 3' to 5'
+        geneSlice1 = geneHalf1[start:start+250]         
+        geneSlice2 = reverseGene[start:start+250]
 
 copies = [geneSlice1, geneSlice2]  # adding the sliced gene to the copy list for duplication purposes
 
@@ -53,21 +56,21 @@ brokenCopies = 0
 avgLength = 0
 geneCopy = ""
 
-# TODO Dr. Duan: "everything from here down is in a for loop"
-for i in range(0, 30):      # 30 iterations of PCR duplicating
+# Perform PCR for 30 iterations
+for i in range(0, 30):
     for j in range(0, len(copies)):        # iterates from index 0 to last index of copies[]
         if len(copies[j]) > 199:            # if the length of the copy is 200 or more, it is used for duplicating
             stop = random.randint(-50, 51) + 200          # determine a stopping point for the copy
             geneCopy = copies[j][:stop]
             copies.append(geneCopy)
 
-# This is how I checked if the copies worked properly, because all I know how to do is print.
+# Show the toal number of copies made
 
+print ("Total copies made:")
 print(len(copies))      # prints the total copies made
 copyLengths = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-# TODO these should be the statistics for the copy lengths. Accoridng to this, the bell-curve isnt normally distributed.
-# TODO troubleshoot bell curve
+# these should be the statistics for the copy lengths
 for x in range(0, len(copies)):
     if 149 < len(copies[x]) < 160:  # lengths 150 - 159
         copyLengths[0] += 1
@@ -90,7 +93,21 @@ for x in range(0, len(copies)):
     if len(copies[x]) > 239:  # lengths 240 - 250
         copyLengths[9] += 1
 
+
+# create graph output and console output for both numeric and visual
+
+lengthLabel = ('150-159', '160-169', '170-179', '180-189', '190-199', '200-209',
+               '210-219', '220-229', '230-239', '240-250')
+print("Number of copies made between lengths:")
+for label in lengthLabel:
+    print(label, end=', ')
+print("")
 print(copyLengths)
-# TODO: Pandas to create graph
 
+y_pos = np.arange(len(lengthLabel))
 
+plt.bar(y_pos, copyLengths, align='center', alpha=0.5)
+plt.xticks(y_pos, lengthLabel)
+plt.ylabel('Number of Copies')
+plt.xlabel('Sequence Length')
+plt.show()
