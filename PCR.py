@@ -1,9 +1,7 @@
 # A PCR program for Dr. Duan's bioinformatics class
-# Written by Cameron Reilly and Tristen Hess, copyright 2019
+# Written by Cameron Reilly and Tristan Hess, copyright 2019
 
 import random
-import string
-import re
 
 bPairs = "actg"
 geneHalf1 = ""
@@ -32,7 +30,6 @@ badPrimers = True
 while badPrimers:
     # randomly pick 200 to be copied
     start = random.randint(1, 1701)
-    end = start + 200
 
     # check the first 20 over all 2000 for unique primers ON BOTH STRANDS
     primer1 = ""
@@ -41,19 +38,27 @@ while badPrimers:
         primer1 += geneHalf1[i+start]
         primer2 += reverseGene[i+start]
 
-
     if geneHalf1.count(primer1) == 1 and reverseGene.count(primer2) == 1:
         badPrimers = False
 
-
 # TODO: Randomly pick size 150 - 250 to copy of strand and copy
-copies = []
-for i in range(start, end):
-    # this will help with adjusting random size variation somehow but idk yet
-    e = random.randint(-50, 51)
+copies = [geneHalf1, geneHalf2]  # adding the initial gene to the copy list for duplication purposes (They count as a usable template for copying)
+
+# potential variables for statistics (We may not use these in the end)
+brokenCopies = 0
+avgLength = 0
+
+# TODO Dr. Duan: "everything from here down is in a for loop"
+for i in range(0, 30):      # 30 iterations of PCR duplicating
+    for j in range(0, len(copies)):        # iterates from index 0 to last index of copies[]
+        if len(copies[j]) > 199:            # if the length of the copy is 200 or more, it is used for duplicating
+            stop = random.randint(-50, 51) + 200          # determine a stopping point for the copy
+
 
 
 
 # TODO: use copied strands to make more copies IF they are at least length 200
 
-# TODO: After 30 iterations use pandas to create graph
+# TODO: Pandas to create graph
+
+
