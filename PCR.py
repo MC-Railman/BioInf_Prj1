@@ -54,7 +54,6 @@ avgLength = 0
 geneCopy = ""
 
 # TODO Dr. Duan: "everything from here down is in a for loop"
-# TODO Verify that copies under length 200 are still created, but not used for duplication
 for i in range(0, 30):      # 30 iterations of PCR duplicating
     for j in range(0, len(copies)):        # iterates from index 0 to last index of copies[]
         if len(copies[j]) > 199:            # if the length of the copy is 200 or more, it is used for duplicating
@@ -62,13 +61,36 @@ for i in range(0, 30):      # 30 iterations of PCR duplicating
             geneCopy = copies[j][:stop]
             copies.append(geneCopy)
 
+# This is how I checked if the copies worked properly, because all I know how to do is print.
 
-# This is how I checked if the copies worked properly, because all I know how to do is print. All were length 200 to 250
+print(len(copies))      # prints the total copies made
+copyLengths = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-#for x i# n range(0, len(copies)):
-    #print(copies[x])
-#print(len(copies))
+# TODO these should be the statistics for the copy lengths. Accoridng to this, the bell-curve isnt normally distributed.
+# TODO troubleshoot bell curve
+for x in range(0, len(copies)):
+    if 149 < len(copies[x]) < 160:  # lengths 150 - 159
+        copyLengths[0] += 1
+    if 159 < len(copies[x]) < 170:  # lengths 160 - 169
+        copyLengths[1] += 1
+    if 169 < len(copies[x]) < 180:  # lengths 170 - 179
+        copyLengths[2] += 1
+    if 179 < len(copies[x]) < 190:  # lengths 180 - 189
+        copyLengths[3] += 1
+    if 189 < len(copies[x]) < 200:  # lengths 190 - 199
+        copyLengths[4] += 1
+    if 199 < len(copies[x]) < 210:  # lengths 200 - 209
+        copyLengths[5] += 1
+    if 209 < len(copies[x]) < 220:  # lengths 210 - 219
+        copyLengths[6] += 1
+    if 219 < len(copies[x]) < 230:  # lengths 220 - 229
+        copyLengths[7] += 1
+    if 229 < len(copies[x]) < 240:  # lengths 230 - 239
+        copyLengths[8] += 1
+    if len(copies[x]) > 239:  # lengths 240 - 250
+        copyLengths[9] += 1
 
+print(copyLengths)
 # TODO: Pandas to create graph
 
 
