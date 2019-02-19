@@ -47,7 +47,12 @@ while badPrimers:
 
 
 # TODO: Randomly pick size 150 - 250 to copy of strand and copy
-e = random.randint(150, 251)
+copies = []
+for i in range(start, end):
+    # this will help with adjusting random size variation somehow but idk yet
+    e = random.randint(-50, 51)
+
+
 
 # TODO: use copied strands to make more copies IF they are at least length 200
 
