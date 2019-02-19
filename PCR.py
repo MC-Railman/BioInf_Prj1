@@ -25,6 +25,9 @@ for letter in geneHalf1:
 # Reverse second half so it reads from 3' to 5'
 reverseGene = "".join(reversed(geneHalf2))
 
+geneSlice1 = ""     # will hold a segment of length 250 from the start position we determine
+geneSlice2 = ""     # max length we can copy is 200+-50, so 250 is the max length we can potentially copy
+
 # loop to get good primers
 badPrimers = True
 while badPrimers:
@@ -40,24 +43,31 @@ while badPrimers:
 
     if geneHalf1.count(primer1) == 1 and reverseGene.count(primer2) == 1:
         badPrimers = False
+        geneSlice1 = geneHalf1[start:start+250]         # segment we will copy from 5' to 3'
+        geneSlice2 = geneHalf2[start:start+250]         # segment we will copy from 3' to 5'
 
-# TODO: Randomly pick size 150 - 250 to copy of strand and copy
-copies = [geneHalf1, geneHalf2]  # adding the initial gene to the copy list for duplication purposes (They count as a usable template for copying)
+copies = [geneSlice1, geneSlice2]  # adding the sliced gene to the copy list for duplication purposes
 
 # potential variables for statistics (We may not use these in the end)
 brokenCopies = 0
 avgLength = 0
+geneCopy = ""
 
 # TODO Dr. Duan: "everything from here down is in a for loop"
+# TODO Verify that copies under length 200 are still created, but not used for duplication
 for i in range(0, 30):      # 30 iterations of PCR duplicating
     for j in range(0, len(copies)):        # iterates from index 0 to last index of copies[]
         if len(copies[j]) > 199:            # if the length of the copy is 200 or more, it is used for duplicating
             stop = random.randint(-50, 51) + 200          # determine a stopping point for the copy
+            geneCopy = copies[j][:stop]
+            copies.append(geneCopy)
 
 
+# This is how I checked if the copies worked properly, because all I know how to do is print. All were length 200 to 250
 
-
-# TODO: use copied strands to make more copies IF they are at least length 200
+#for x i# n range(0, len(copies)):
+    #print(copies[x])
+#print(len(copies))
 
 # TODO: Pandas to create graph
 
