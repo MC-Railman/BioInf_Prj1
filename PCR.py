@@ -52,19 +52,18 @@ while badPrimers:
 copies = [geneSlice1, geneSlice2]  # adding the sliced gene to the copy list for duplication purposes
 
 # potential variables for statistics (We may not use these in the end)
-brokenCopies = 0
 avgLength = 0
 geneCopy = ""
 
 # Perform PCR for 30 iterations
-for i in range(0, 30):
+for i in range(0, 10):
     for j in range(0, len(copies)):        # iterates from index 0 to last index of copies[]
         if len(copies[j]) > 199:            # if the length of the copy is 200 or more, it is used for duplicating
             stop = random.randint(-50, 51) + 200          # determine a stopping point for the copy
             geneCopy = copies[j][:stop]
             copies.append(geneCopy)
 
-# Show the toal number of copies made
+# Show the total number of copies made
 
 print ("Total copies made:")
 print(len(copies))      # prints the total copies made
@@ -72,6 +71,7 @@ copyLengths = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 # these should be the statistics for the copy lengths
 for x in range(0, len(copies)):
+    avgLength += len(copies[x])
     if 149 < len(copies[x]) < 160:  # lengths 150 - 159
         copyLengths[0] += 1
     if 159 < len(copies[x]) < 170:  # lengths 160 - 169
@@ -93,6 +93,10 @@ for x in range(0, len(copies)):
     if len(copies[x]) > 239:  # lengths 240 - 250
         copyLengths[9] += 1
 
+# Show the average length of all copies
+avgLength = avgLength / len(copies)
+print("Average length of copies:")
+print(avgLength)
 
 # create graph output and console output for both numeric and visual
 
