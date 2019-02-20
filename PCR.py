@@ -56,7 +56,7 @@ avgLength = 0
 geneCopy = ""
 
 # Perform PCR for 30 iterations
-for i in range(0, 10):
+for i in range(0, 30):
     for j in range(0, len(copies)):        # iterates from index 0 to last index of copies[]
         if len(copies[j]) > 199:            # if the length of the copy is 200 or more, it is used for duplicating
             stop = random.randint(-50, 51) + 200          # determine a stopping point for the copy
